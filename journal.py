@@ -12,7 +12,7 @@ class Journal:
     def __init__(self, filename: str = "journal.json"):
         self.filename = filename
         self.entries = self.load_entries()
-    
+
     # Load entries from JSON
     def load_entries(self):
         try:
@@ -20,7 +20,7 @@ class Journal:
                 return json.load(f)
         except (json.JSONDecodeError, FileNotFoundError, IOError, OSError):
             return []
-    
+
     # Save the new entries to the JSON
     def save_entries(self):
         try:
@@ -41,7 +41,7 @@ class Journal:
             "edited_timestamp": None
         })
         self.save_entries()
-    
+
     # Check if a specific element exists in the JSON
     def has_entry(self, key: str, value) -> bool:
         return any(entry.get(key) == value for entry in self.entries)
@@ -66,21 +66,21 @@ class Journal:
                 self.save_entries()
                 return True
         return False
-    
+
     # Returns the entry with the given title
     def return_by_title(self, title: str):
         for entry in self.entries[:]:
             if entry["title"] == title:
                 return entry
         return None
-    
+
     # Returns the entry with the given timestamp
     def return_by_timestamp(self, timestamp: str):
         for entry in self.entries[:]:
             if entry["timestamp"] == timestamp:
                 return entry
         return None
-    
+
     # Returns the entry with the given edited timestamp
     def return_by_edited_timestamp(self, timestamp: str):
         for entry in self.entries[:]:
